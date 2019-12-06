@@ -31,6 +31,7 @@ module.exports = function(app){
 
     app.post('/todo', urlencodedParser, function(req, res){
         // get data from the view and add it to mongodb
+        console.log(req.body);
         var newTodo = Todo(req.body).save(function(err, data){
             if (err) throw err;
             res.json(data)
@@ -40,6 +41,21 @@ module.exports = function(app){
     app.delete('/todo/:item', function(req, res){
         // delete the requested item from mongodb
         Todo.find({item: req.params.item.replace(/\-/g, " ")}).deleteOne(function(err, data){
+            if (err) throw err;
+            res.json(data);
+        });
+    });
+
+    app.get('/api', function(req, res){
+        Todo.find({}, function(err, data){
+            if (err) throw err;
+            res.json({todos: data});
+        });
+    });
+
+    app.post('/api/:item', function(req, res){
+        console.log(req.params.item);
+        var newTodo = Todo({item: req.params.item}).save(function(err, data){
             if (err) throw err;
             res.json(data);
         });
