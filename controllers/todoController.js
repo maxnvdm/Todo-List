@@ -1,22 +1,6 @@
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-
-// Connect to the database
-mongoose.connect('mongodb+srv://test:test@todo-kofr6.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true});
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-  // we're connected!
-  console.log('Connected');
-});
-
-// Create a schema - blueprint for data
-var todoSchema = new mongoose.Schema({
-    item: String
-});
-
-var Todo = mongoose.model('Todo', todoSchema);
-
+var Todo = require('../models/item');
 var urlencodedParser = bodyParser.urlencoded({extended: false});
 
 module.exports = function(app){
@@ -31,7 +15,6 @@ module.exports = function(app){
 
     app.post('/todo', urlencodedParser, function(req, res){
         // get data from the view and add it to mongodb
-        console.log(req.body);
         var newTodo = Todo(req.body).save(function(err, data){
             if (err) throw err;
             res.json(data)
@@ -46,18 +29,5 @@ module.exports = function(app){
         });
     });
 
-    app.get('/api', function(req, res){
-        Todo.find({}, function(err, data){
-            if (err) throw err;
-            res.json({todos: data});
-        });
-    });
 
-    app.post('/api/:item', function(req, res){
-        console.log(req.params.item);
-        var newTodo = Todo({item: req.params.item}).save(function(err, data){
-            if (err) throw err;
-            res.json(data);
-        });
-    });
 }
