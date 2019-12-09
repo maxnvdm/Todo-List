@@ -20,6 +20,17 @@ body{
     clear: both;
 }
 
+#modal-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-button{
+    margin: 10px;
+    position:relative;
+}
+
 input[type="text"]{
     width: 70%;
     padding: 20px;
@@ -67,5 +78,33 @@ h1{
     padding: 20px;
     background: url(/assets/logo.png) no-repeat center;
     margin-bottom: 0;
-    text-indent: -10000px;
+    text-indent: 250px;
+}
+
+/* Styling for the close Button (X in need help modal)*/
+
+.close {
+    color: darkgrey;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .modal-header
+{
+display: block!important;
+}
+.modal-title
+{
+float: left;
+}
+.modal-header .close
+{
+float: right;
 }
