@@ -1,12 +1,11 @@
 var express = require('express');
 var apiRoutes = require('./routes/api');
 var mongoose = require('mongoose');
-
 var todoController = require('./controllers/todoController');
 
 var app = express();
 
-// Connect to the database
+// connect to the database
 mongoose.connect('mongodb+srv://test:test@todo-kofr6.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));

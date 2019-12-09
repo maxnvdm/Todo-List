@@ -4,7 +4,7 @@
   "description": "A node JS todo list",
   "main": "todo-list.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "author": "Max van der Merwe",
   "license": "ISC",
