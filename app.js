@@ -2,6 +2,7 @@ var express = require('express');
 var apiRoutes = require('./routes/api');
 var mongoose = require('mongoose');
 var todoController = require('./controllers/todoController');
+var authRoutes = require('./routes/auth');
 
 var app = express();
 
@@ -22,6 +23,9 @@ app.use(express.static('./public'));
 
 // fire controllers for front-end
 todoController(app);
+
+// initialize routes for authentication
+app.use('/auth', authRoutes);
 
 // initialize routes for api
 app.use('/api', apiRoutes);
