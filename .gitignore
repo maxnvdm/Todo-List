@@ -1,0 +1,5 @@
+# Don't track the following folders
+node_modules/
+config/keys.js
+package-lock.json
+public/assets/logo1.png

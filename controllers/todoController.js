@@ -5,6 +5,11 @@ var urlencodedParser = bodyParser.urlencoded({extended: false});
 // handle normal web-browser interactions for the todo app
 module.exports = function(app){
     
+    app.get('/', (req, res) =>{
+        res.render('home', {user: req.user});
+    });
+
+
     // return the main page of the todo list, populated with entries form the database
     app.get('/todo', function(req, res){
         // get data from mongodb and pass it to the view
@@ -31,4 +36,4 @@ module.exports = function(app){
             res.json(data);
         });
     });
-}
+};

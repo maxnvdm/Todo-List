@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Homepage Login</title>
+        <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+        <script src="/assets/todo-list-user.js"></script>
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body{
+                font-family: arial;
+                margin: 0;
+            }
+            nav{
+                background: #ff5353;
+                padding: 20px 10px;
+            }
+            nav ul{
+                max-width: 960px;
+                margin: 0 auto;
+                padding: 0;
+            }
+            nav li{
+                list-style-type: none;
+                display: inline-block;
+                margin: 0 10px 0 0;
+            }
+            nav a{
+                color: #fff;
+                font-size: 18px;
+                background: rgba(255,255,255,0.2);
+                text-decoration: none;
+                padding: 10px;
+                display: block;
+            }
+            main, header{
+                max-width: 960px;
+                margin: 30px auto;
+                padding: 0 10px;
+                color: #333;
+            }
+            li:hover{
+            text-decoration: line-through;
+            background: rgba(0,0,0,0.2);
+            }
+
+        </style>
+    </head>
+    <body>
+        <nav>
+            <ul>
+                <% if (user) { %>
+                <li><a href="/auth/logout">Logout</a></li>
+                <% } else { %>
+                <li><a href="/auth/login">Login</a></li>
+                <% } %>
+                <li><a href="/">Homepage</a></li>
+                <li><a href="/profile">Profile</a></li>
+            </ul>
+        </nav>
+        <header>
+            <h1>Welcome to your To Do list, <%= user.username %></h1>
+        </header>
+        <main>
+                <div id="todo-table">
+                        <form>
+                            <input type="text" name="item" placeholder="Add new item..." required />
+                            <button type="submit">Add Item</button>
+                        </form>
+                        <ul>
+                            <% for(var i=0; i < todos.length; i++){ %>
+                                <li><%= todos[i].item %></li>
+                            <% } %>
+                        </ul>
+                        <div id="modal-button">
+                        <button class="modal-button" data-toggle="modal" data-target="#helpModal">Need Help?</button>
+                    </div>    
+                    <div class="modal fade" id="helpModal" role="dialog">
+                            <div class="modal-dialog modal-lg">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                  <h3 class="modal-title">How to use To-do list</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>To add an item to the to-do list, enter the item in the text box and click "Add Item".</p>
+                                    <p>To remove an item from the list, click on the item and it will be deleted.</p>
+                                    <h4>API instructions</h4>
+                                    <p>The API can be accessed through the following url:https://autobots-todolist.herokuapp.com/api</p>
+                                    <p>To retrieve all the items in the database, perform a GET request to the API url. Note, the item ID returned in the GET request is used in performing the PUT and DELETE requests.</p>
+                                    <p>To create a new item, perform a POST request where the body contains a Json object in the following format: { "item": "ItemName"}</p>
+                                    <p>To update an item, send a PUT request where the api url has the item ID appended after "/api", ie ".../api/ItemID1234".
+                                       The body of the request should contain a Json object of the same format as the POST request to update the item name.</p>
+                                    <p>To delete an item, send a DELETE request with the item ID appended to the url, in the same format as the PUT request.</p>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+            
+                    </div>
+        </main>
+    </body>
+</html>
