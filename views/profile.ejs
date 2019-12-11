@@ -25,7 +25,7 @@
                 margin: 0 auto;
                 padding: 0;
             }
-            nav li{
+            nav span{
                 list-style-type: none;
                 display: inline-block;
                 margin: 0 10px 0 0;
@@ -55,12 +55,12 @@
         <nav>
             <ul>
                 <% if (user) { %>
-                <li><a href="/auth/logout">Logout</a></li>
+                <span><a href="/auth/logout">Logout</a></span>
                 <% } else { %>
-                <li><a href="/auth/login">Login</a></li>
+                <span><a href="/auth/login">Login</a></span>
                 <% } %>
-                <li><a href="/">Homepage</a></li>
-                <li><a href="/profile">Profile</a></li>
+                <span><a href="/">Homepage</a></span>
+                <span><a href="/profile">Profile</a></span>
             </ul>
         </nav>
         <header>
