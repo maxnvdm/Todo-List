@@ -6,7 +6,7 @@ var urlencodedParser = bodyParser.urlencoded({extended: false});
 module.exports = function(app){
     
     app.get('/', (req, res) =>{
-        res.render('home');
+        res.render('home', {user: req.user});
     });
 
 
