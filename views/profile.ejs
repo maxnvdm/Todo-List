@@ -11,45 +11,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
-            body{
-                font-family: arial;
-                margin: 0;
-            }
-            nav{
-                background: #ff5353;
-                padding: 20px 10px;
-            }
-            nav ul{
-                max-width: 960px;
-                margin: 0 auto;
-                padding: 0;
-            }
-            nav span{
-                list-style-type: none;
-                display: inline-block;
-                margin: 0 10px 0 0;
-            }
-            nav a{
-                color: #fff;
-                font-size: 18px;
-                background: rgba(255,255,255,0.2);
-                text-decoration: none;
-                padding: 10px;
-                display: block;
-            }
-            main, header{
-                max-width: 960px;
-                margin: 30px auto;
-                padding: 0 10px;
-                color: #333;
-            }
-            li:hover{
-            text-decoration: line-through;
-            background: rgba(0,0,0,0.2);
-            }
-
-        </style>
+        <link href="/assets/profilestyles.css" rel="stylesheet" type="text/css">
     </head>
     <body>
         <nav>
@@ -72,7 +34,7 @@
                             <input type="text" name="item" placeholder="Add new item..." required />
                             <button type="submit">Add Item</button>
                         </form>
-                        <ul>
+                        <ul class="listText">
                             <% for(var i=0; i < todos.length; i++){ %>
                                 <li><%= todos[i].item %></li>
                             <% } %>
